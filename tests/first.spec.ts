@@ -21,3 +21,13 @@ test('open the sign in page', async ({ page }) => {
   await page.getByPlaceholder('Your email').fill('test@example.com');
   await expect(page).toHaveURL('https://practicesoftwaretesting.com/auth/login');
 });
+test('login with the demo account', async ({ page }) => {
+  await page.goto('https://practicesoftwaretesting.com/auth/login');
+
+  await page.getByTestId('email').fill('customer@practicesoftwaretesting.com');
+  await page.getByTestId('password').fill('welcome01');
+  await page.getByTestId('login-submit').click();
+
+  await expect(page).toHaveURL(/account/);
+  await expect(page.getByRole('heading', { name: 'My account' })).toBeVisible();
+});
