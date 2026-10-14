@@ -15,3 +15,9 @@ test('search for a product', async ({ page }) => {
   await searchBox.press('Enter');
   await expect(firstProduct).toContainText('Hammer');
 });
+test('open the sign in page', async ({ page }) => {
+  await page.goto('https://practicesoftwaretesting.com/');
+  await page.getByRole('link', { name: 'Sign in' }).click();
+  await page.getByPlaceholder('Your email').fill('test@example.com');
+  await expect(page).toHaveURL('https://practicesoftwaretesting.com/auth/login');
+});
