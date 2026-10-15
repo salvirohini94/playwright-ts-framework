@@ -31,4 +31,4 @@ test('login with the demo account', async ({ page }) => {
 
   await expect(page).toHaveURL(/account/);
   await expect(page.getByRole('heading', { name: 'My account' })).toBeVisible();
-});
+})
