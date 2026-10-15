@@ -31,7 +31,7 @@ export default defineConfig({
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     baseURL: 'https://practicesoftwaretesting.com',
     testIdAttribute: 'data-test',
-    trace: 'on-first-retry',
+    trace: 'retain-on-failure',
     screenshot: { mode: 'only-on-failure', fullPage:true }, 
     video: 'retain-on-failure',   
     viewport: { width: 1280, height: 1000 },
