@@ -1,6 +1,6 @@
 import { test as base, expect, Page } from '@playwright/test';
 
-export const test = base.extend<{ loggedInPage: Page }>({     // hint: the word for "add something new to the base test" (starts with ext)
+export const test = base.extend<{ loggedInPage: Page; homePage: Page }>({ 
   loggedInPage: async ({ page }, use) => {
     await page.goto('/auth/login');
     await page.getByTestId('email').fill('customer@practicesoftwaretesting.com');
@@ -8,7 +8,13 @@ export const test = base.extend<{ loggedInPage: Page }>({     // hint: the word 
     await page.getByTestId('login-submit').click();
     await expect(page).toHaveURL(/account/);
 
-    await use(page);                                       
+    await use(page); 
+    
+  },
+  homePage: async ({ page }, use) => {
+    await page.goto('/');
+    await expect(page.getByTestId('product-name').first()).toBeVisible();
+    await use(page);
   },
 });
 
