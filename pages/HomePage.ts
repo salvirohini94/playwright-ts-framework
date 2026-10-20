@@ -26,4 +26,7 @@ export class HomePage {
   async sortBy(option: string) {
     await this.sortDropdown.selectOption(option);              
   }
+  async openProduct(name: string) {
+  await this.page.getByText(name).click();      // hint: the locator that finds an element by its visible words
+}
 }

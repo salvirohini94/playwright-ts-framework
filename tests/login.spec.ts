@@ -1,9 +1,7 @@
-import { test, expect } from '@playwright/test';
-import { LoginPage } from '../pages/LoginPage';
+import { test, expect } from '../fixtures/base';
+import { user } from '../test-data/user';
 
-test('login using the page object', async ({ page }) => {
-  const loginPage = new LoginPage(page);                  
-  await loginPage.goto();
-  await loginPage.login('narayanerohini@gmail.com', 'Rohini_narayane123');
+test('login using the page object', async ({ loginPage, page }) => {
+  await loginPage.login(user.email, user.password);     
   await expect(page).toHaveURL(/account/);
 });
